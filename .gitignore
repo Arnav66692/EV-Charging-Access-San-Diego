@@ -1,0 +1,44 @@
+.env
+Data/raw/
+# The actual raw dir on disk is capital-R "Data/Raw" (holds the ~126MB TIGER .shp and
+# 80MB/50MB zips). The lowercase rule above only catches it on case-insensitive filesystems
+# (macOS); this explicit variant keeps it ignored on case-sensitive ones (Linux/CI).
+Data/Raw/
+# Ignore processed data, EXCEPT the two small CSVs that make the committed
+# regression (Code/analysis/joint_ols_spatial.py) reproducible by a cloner.
+# Use Data/processed/* (not Data/processed/) so git still descends into the
+# directory; a directory-form ignore would make the negations below ineffective,
+# since git cannot re-include a file whose parent directory is excluded.
+Data/processed/*
+!Data/processed/blockgroup_access.csv
+!Data/processed/blockgroup_g2sfca.csv
+__pycache__/
+.DS_Store
+
+# Python virtual environment
+.venv/
+
+# Test / tooling caches
+.pytest_cache/
+
+.claude/
+
+# Logs (keep the directory, ignore the log files)
+logs/*.log
+
+# graphify knowledge-graph output (generated, regenerable)
+graphify-out/
+
+# Rendered figures (regenerable from Code/figures/make_figures.py)
+# Anchored to repo root so it does NOT match Code/figures/ on case-insensitive filesystems.
+/Figures/
+
+# Stray Obsidian vault (not project content)
+navster/
+Paper_BACKUP_pre_airtight/
+
+# Internal working files, not part of the published artifact
+CLAUDE.md
+references.txt
+Docs/
+logs/

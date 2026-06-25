@@ -1,0 +1,44 @@
+# Pinned to the versions in the verified project .venv (Python 3.9.6).
+# This environment reproduces the paper's headline numbers
+# (DAC DCFC w_median ratio 0.6321; plain-median anchor 0.6308).
+
+# Core data / geospatial (pyproj + pyogrio are load-bearing: EPSG:3310
+# reprojection and TIGER shapefile IO used throughout the pipeline)
+pandas==2.3.3
+numpy==2.0.2
+geopandas==1.0.1
+shapely==2.0.7
+pyproj==3.6.1
+pyogrio==0.11.1
+matplotlib==3.9.4
+
+# Data acquisition (AFDC / Census / CalEnviroScreen pulls)
+requests==2.32.5
+beautifulsoup4==4.15.0
+python-dotenv==1.2.1
+
+# Spatial statistics (Moran's I + spatial error model); scipy is required by the stack
+libpysal==4.8.1
+esda==2.5.1
+spreg==1.9.0
+statsmodels==0.14.6
+scipy==1.13.1
+
+# Modeling (installed; available for exploratory paths)
+scikit-learn==1.6.1
+
+# Testing
+pytest==8.4.2
+
+# --- Declared for planned modeling / dashboard work. NOT installed in the verified
+# --- .venv and NOT imported by the current pipeline, so left commented (no installed
+# --- version to pin). Uncomment and pin a version before relying on any of them.
+# xgboost
+# lightgbm
+# plotly
+# streamlit
+# folium
+# osmnx
+# pyarrow
+# jupyter
+# notebook
