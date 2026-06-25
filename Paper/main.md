@@ -223,7 +223,7 @@ upper bound. The additive model does not represent queueing, driver substitution
 ## Reproducibility and statistical treatment
 
 The full pipeline was implemented in Python and committed to a version-controlled repository, with
-each metric unit-tested or checked against a hand-computed reference before use. The full pipeline is available at REPO_URL_PENDING. Because census
+each metric unit-tested or checked against a hand-computed reference before use. The full pipeline is available at https://github.com/Arnav66692/EV-Charging-Access-San-Diego. Because census
 block groups are spatially autocorrelated, neighboring units are not independent observations.
 Effect sizes were therefore reported as the primary evidence, and p-values were treated as
 optimistic and not reported.
