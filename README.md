@@ -216,7 +216,7 @@ uptime priors.
 
 Limitations:
 1. Assumed rates. Every reliability rate is an assumed national network average (J.D.
-   Power 2025 EVX, Consumer Reports 2025): Tesla/Tesla Destination 0.95, ChargePoint 0.85,
+   Power 2025 EVX): Tesla/Tesla Destination 0.95, ChargePoint 0.85,
    Electrify America 0.80, EVgo 0.75, Blink 0.70, Shell Recharge 0.70, else/non-networked/
    unknown 0.75. These are not measured and not San Diego specific. Measured CEC AB 2061
    station-level uptime publishes in 2027; this framework is built to ingest it when it does.
@@ -254,5 +254,4 @@ dispersion/budget constraint yet, so sites concentrate in the single worst-serve
 **AFDC network real-time status.** The AFDC electric-networks endpoint
 (`/api/alt-fuel-stations/v1/electric-networks.json`) currently returns only `key`,
 `name`, `name_fr` per network. The `real_time_status_api` field is not present in the
-current API response (checked 2026-06-22). See `Docs/network_realtime_status.md` for
-the full network table.
+current API response (checked 2026-06-22).
