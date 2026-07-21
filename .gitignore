@@ -42,3 +42,7 @@ CLAUDE.md
 references.txt
 Docs/
 logs/
+
+# Built paper outputs — source lives in Paper/*.md + references.bib
+ElecChargersPaper.pdf
+ElecChargersPaperv2.pdf
