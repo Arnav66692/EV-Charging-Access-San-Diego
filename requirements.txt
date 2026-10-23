@@ -1,6 +1,6 @@
 # Pinned to the versions in the verified project .venv (Python 3.9.6).
 # This environment reproduces the paper's headline numbers
-# (DAC DCFC w_median ratio 0.6321; plain-median anchor 0.6308).
+# (DAC DCFC population-weighted median ratio 0.6845).
 
 # Core data / geospatial (pyproj + pyogrio are load-bearing: EPSG:3310
 # reprojection and TIGER shapefile IO used throughout the pipeline)

@@ -3,6 +3,47 @@
 Analysis of public electric-vehicle charging access in San Diego County (FIPS
 06073), built on the AFDC Alternative Fuel Stations dataset.
 
+[![CI](https://github.com/Arnav66692/EV-Charging-Access-San-Diego/actions/workflows/ci.yml/badge.svg)](https://github.com/Arnav66692/EV-Charging-Access-San-Diego/actions/workflows/ci.yml)
+
+**Finding:** the population-weighted median DC fast-charging access ratio for
+disadvantaged versus non-disadvantaged communities is **0.6845** across 2,058
+block groups. Being closer to a charger does not guarantee better access once
+competing population is counted. This is a descriptive result, not a causal estimate.
+
+![Distance and accessibility tell different stories](Figures/F1_reversal_distance_vs_access.png)
+
+Read the [paper (PDF)](Paper/main.pdf), [Markdown paper](Paper/main.md), or
+[results](Paper/results_section.md). The DAC OLS coefficient is −0.467 with
+R² = 0.0352; after spatial-error adjustment its p-value is approximately 0.17.
+The spatial adjustment weakens the inference and remains part of the result.
+
+## Quick verification
+
+The original environment used Python 3.9.6. CI uses Python 3.11 with the same
+pinned analysis dependencies. From the repository root:
+
+```bash
+python3.11 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pytest -q
+.venv/bin/python Code/pull_tiger.py
+.venv/bin/python Code/analysis/joint_ols_spatial.py
+```
+
+Unit tests and the frozen-table headline check need no keys or network. The
+spatial regression downloads Census geometry (about 55 MB); it uses the two
+committed CSVs, so do **not** pull new AFDC data just to check the published result.
+CI runs both the offline tests and the full seven-assertion spatial regression.
+
+The six paper figures are restored from the committed PDF; see their
+[provenance](Figures/README.md). Full regeneration of figures, reliability
+sensitivities, and siting results requires raw/intermediate inputs not all
+included in the checkout. A live data refresh is a new analysis snapshot.
+
+MIT covers the code. Data retains its source terms and attribution; see
+[DATA_SOURCES.md](DATA_SOURCES.md). Candidate centroids are hypothetical
+screening locations, not verified buildable parcels.
+
 ## Pipeline
 
 - `Code/afdc_common.py` — shared AFDC API fetch + San Diego County point-in-polygon clip.
@@ -188,7 +229,7 @@ flag, and CES `is_dac` / `ces_pctile` with a `ces_crosswalked` provenance flag.
 **Note:** top BGs by `charger_ports_per_1000` are low-population commercial/workplace
 areas (denominator artifact), not high residential access — interpret per-capita density
 alongside absolute `charger_ports_total`. The output CSV is reproducible from raw + code
-and is gitignored (`Data/processed/`).
+and is one of the two committed processed tables. Other generated tables are ignored.
 
 **`Data/processed/blockgroup_g2sfca.csv`** — built by
 `Code/features/build_access_g2sfca.py`. Gaussian two-step floating catchment area
@@ -245,7 +286,7 @@ Result: the ten sites close the DAC/non-DAC fast-charging access ratio from 0.65
 on the reported median (about 72 percent of the gap to parity) and from 0.6420 to 0.803 on
 the mean objective (about 45 percent); DAC mean access +27.0 percent, DAC median +38.5
 percent, non-DAC mean +1.5 percent. Excluding the three non-buildable Coronado bayfront
-centroids, the seven in-corridor sites are the buildable headline, closing 31.0 percent of
+centroids, the seven in-corridor centroids form a hypothetical siting scenario, closing 31.0 percent of
 the gap on the mean and 48.4 percent on the median. All ten sites cluster in the South Bay
 corridor (National City, Coronado, and the City of San Diego), each within 6 miles of 93–122
 DAC block groups. Reliability priors remain assumed (see above); there is no

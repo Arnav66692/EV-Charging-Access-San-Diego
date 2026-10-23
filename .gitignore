@@ -31,7 +31,9 @@ graphify-out/
 
 # Rendered figures (regenerable from Code/figures/make_figures.py)
 # Anchored to repo root so it does NOT match Code/figures/ on case-insensitive filesystems.
-/Figures/
+/Figures/*
+!/Figures/*.png
+!/Figures/README.md
 
 # Stray Obsidian vault (not project content)
 navster/
